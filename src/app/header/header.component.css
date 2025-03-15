@@ -1,0 +1,27 @@
+header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+}
+header div {
+  background-color: transparent; /* Changed to a more visually appealing color */
+  color: #fff;
+  padding: 10px; /* Applied padding to all sides */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+a {
+  color: #fff;
+  margin: 0 10px;
+  text-decoration: none;
+  padding: 10px 15px 10px 15px;
+}
+
+a:hover {
+  color: #fff;
+  background-color: #547fff;
+  padding: 10px 15px 10px 15px;
+  border-radius: 20px;
+}

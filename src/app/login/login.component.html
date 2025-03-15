@@ -1,0 +1,61 @@
+<div class="login-container">
+  <h2 class="title">Login to your account</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="collegeEmail">Email</label>
+      <input type="email" id="collegeEmail" formControlName="collegeEmail" />
+      <div
+        *ngIf="
+          loginForm.get('collegeEmail')?.touched &&
+          loginForm.get('collegeEmail')?.hasError('required')
+        "
+        class="error"
+      >
+        College Email is required.
+      </div>
+      <div
+        *ngIf="
+          loginForm.get('collegeEmail')?.touched &&
+          loginForm.get('collegeEmail')?.hasError('pattern')
+        "
+        class="error"
+      >
+        Email must be in the format 1032220499&#64;tcetmumbai.in.
+      </div>
+    </div>
+
+    <div>
+      <label for="password">Password</label>
+      <input type="password" id="password" formControlName="password" />
+      <div
+        *ngIf="
+          loginForm.get('password')?.touched &&
+          loginForm.get('password')?.hasError('required')
+        "
+        class="error"
+      >
+        Password is required.
+      </div>
+      <div
+        *ngIf="
+          loginForm.get('password')?.touched &&
+          loginForm.get('password')?.hasError('minlength')
+        "
+        class="error"
+      >
+        Password must be at least 6 characters.
+      </div>
+    </div>
+
+    <button type="submit" class="button">Login now</button>
+  </form>
+  <p style="color: #fff; text-align: center">
+    Don’t have an account?
+    <a
+      routerLink="/signup"
+      style="text-decoration: none; color: gray"
+      href="/signup"
+      >Sign Up</a
+    >
+  </p>
+</div>
