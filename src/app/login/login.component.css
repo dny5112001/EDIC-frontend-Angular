@@ -56,7 +56,9 @@ button:hover {
   background-color: #547fff;
   transition: all ease-in-out;
 }
+
 .error {
   color: red;
   font-size: 12px;
+  padding: 10px;
 }
