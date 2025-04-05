@@ -6,22 +6,24 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { CommonModule } from '@angular/common'; // Add this
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, CommonModule], // Add CommonModule here
+  imports: [ReactiveFormsModule, RouterLink, CommonModule],
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
   signupForm: FormGroup;
+  submitted = false;
 
   constructor(private fb: FormBuilder) {
     this.signupForm = this.fb.group(
       {
-        fullName: ['', Validators.required],
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
         studentUID: [
           '',
           [
@@ -52,6 +54,14 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit() {
+    this.submitted = true;
+    
+    // Mark all fields as touched to trigger validation messages
+    Object.keys(this.signupForm.controls).forEach(field => {
+      const control = this.signupForm.get(field);
+      control?.markAsTouched({ onlySelf: true });
+    });
+    
     if (this.signupForm.valid) {
       console.log('Form Submitted:', this.signupForm.value);
     } else {

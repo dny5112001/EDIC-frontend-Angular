@@ -1,26 +1,56 @@
 <div class="signup-container">
-  <h2 style="color: #fff">Create an account</h2>
+  <h2>Create an account</h2>
   <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-    <div>
-      <label for="fullName">Name</label>
-      <input type="text" id="fullName" formControlName="fullName" />
-      <div
-        *ngIf="
-          signupForm.get('fullName')?.touched &&
-          signupForm.get('fullName')?.hasError('required')
-        "
-        class="error"
-      >
-        Full Name is required.
+    <div class="form-row">
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input
+          type="text"
+          id="firstName"
+          formControlName="firstName"
+          placeholder="John"
+        />
+        <div
+          *ngIf="
+            (signupForm.get('firstName')?.touched || submitted) &&
+            signupForm.get('firstName')?.hasError('required')
+          "
+          class="error"
+        >
+          First name is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input
+          type="text"
+          id="lastName"
+          formControlName="lastName"
+          placeholder="Doe"
+        />
+        <div
+          *ngIf="
+            (signupForm.get('lastName')?.touched || submitted) &&
+            signupForm.get('lastName')?.hasError('required')
+          "
+          class="error"
+        >
+          Last name is required.
+        </div>
       </div>
     </div>
 
-    <div>
-      <label for="studentUID">UID</label>
-      <input type="text" id="studentUID" formControlName="studentUID" />
+    <div class="form-group">
+      <label for="studentUID">Student UID</label>
+      <input
+        type="text"
+        id="studentUID"
+        formControlName="studentUID"
+        placeholder="21-ABC45-67"
+      />
       <div
         *ngIf="
-          signupForm.get('studentUID')?.touched &&
+          (signupForm.get('studentUID')?.touched || submitted) &&
           signupForm.get('studentUID')?.hasError('required')
         "
         class="error"
@@ -29,21 +59,26 @@
       </div>
       <div
         *ngIf="
-          signupForm.get('studentUID')?.touched &&
+          (signupForm.get('studentUID')?.touched || submitted) &&
           signupForm.get('studentUID')?.hasError('pattern')
         "
         class="error"
       >
-        UID must be a 10-digit number starting with 0 or 1.
+        UID must be in format 21-ABC45-67.
       </div>
     </div>
 
-    <div>
-      <label for="collegeEmail">Email</label>
-      <input type="email" id="collegeEmail" formControlName="collegeEmail" />
+    <div class="form-group">
+      <label for="collegeEmail">College Email</label>
+      <input
+        type="email"
+        id="collegeEmail"
+        formControlName="collegeEmail"
+        placeholder="1032220499@tcetmumbai.in"
+      />
       <div
         *ngIf="
-          signupForm.get('collegeEmail')?.touched &&
+          (signupForm.get('collegeEmail')?.touched || submitted) &&
           signupForm.get('collegeEmail')?.hasError('required')
         "
         class="error"
@@ -52,21 +87,26 @@
       </div>
       <div
         *ngIf="
-          signupForm.get('collegeEmail')?.touched &&
+          (signupForm.get('collegeEmail')?.touched || submitted) &&
           signupForm.get('collegeEmail')?.hasError('pattern')
         "
         class="error"
       >
-        Email must be in the format 1032220499&#64;tcetmumbai.in
+        <!-- Email must be in the format 1032220499@tcetmumbai.in -->
       </div>
     </div>
 
-    <div>
+    <div class="form-group">
       <label for="password">Password</label>
-      <input type="password" id="password" formControlName="password" />
+      <input
+        type="password"
+        id="password"
+        formControlName="password"
+        placeholder="••••••"
+      />
       <div
         *ngIf="
-          signupForm.get('password')?.touched &&
+          (signupForm.get('password')?.touched || submitted) &&
           signupForm.get('password')?.hasError('required')
         "
         class="error"
@@ -75,7 +115,7 @@
       </div>
       <div
         *ngIf="
-          signupForm.get('password')?.touched &&
+          (signupForm.get('password')?.touched || submitted) &&
           signupForm.get('password')?.hasError('minlength')
         "
         class="error"
@@ -84,16 +124,17 @@
       </div>
     </div>
 
-    <div>
+    <div class="form-group">
       <label for="confirmPassword">Confirm Password</label>
       <input
         type="password"
         id="confirmPassword"
         formControlName="confirmPassword"
+        placeholder="••••••"
       />
       <div
         *ngIf="
-          signupForm.get('confirmPassword')?.touched &&
+          (signupForm.get('confirmPassword')?.touched || submitted) &&
           signupForm.get('confirmPassword')?.hasError('required')
         "
         class="error"
@@ -102,8 +143,8 @@
       </div>
       <div
         *ngIf="
-          signupForm.hasError('mismatch') &&
-          signupForm.get('confirmPassword')?.touched
+          (signupForm.get('confirmPassword')?.touched || submitted) &&
+          signupForm.hasError('mismatch')
         "
         class="error"
       >
@@ -111,18 +152,10 @@
       </div>
     </div>
 
-    <button type="submit" [disabled]="signupForm.invalid">
-      Create account
-    </button>
-    <div style="text-align: center; color: #fff">
+    <button type="submit">Create account</button>
+    <div class="login-link">
       Already have an account?
-      <a
-        routerLink="/login"
-        style="text-decoration: none; color: gray"
-        href="/login"
-      >
-        Login</a
-      >
+      <a routerLink="/login"> Login </a>
     </div>
   </form>
 </div>
