@@ -1,5 +1,10 @@
 <div class="signup-container">
   <h2>Create an account</h2>
+
+  <!-- Success/Error Messages -->
+  <div class="success-message" *ngIf="successMessage">{{ successMessage }}</div>
+  <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
+
   <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
     <div class="form-row">
       <div class="form-group">
@@ -40,6 +45,7 @@
       </div>
     </div>
 
+    <!-- Rest of your form fields remain the same -->
     <div class="form-group">
       <label for="studentUID">Student UID</label>
       <input
@@ -152,7 +158,14 @@
       </div>
     </div>
 
-    <button type="submit">Create account</button>
+    <button type="submit" [disabled]="isLoading">
+      <span *ngIf="isLoading" class="loader-container">
+        <span class="loader"></span>
+        <span class="loader-text">Creating account...</span>
+      </span>
+      <span *ngIf="!isLoading">Create account</span>
+    </button>
+
     <div class="login-link">
       Already have an account?
       <a routerLink="/login"> Login </a>

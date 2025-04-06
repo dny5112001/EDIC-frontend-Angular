@@ -57,6 +57,7 @@ header {
 .header-nav {
   display: flex;
   gap: 30px;
+  align-items: center;
 }
 
 .nav-link {
@@ -88,6 +89,61 @@ header {
 
 .nav-link:hover {
   color: #fff;
+}
+
+/* User Profile Styles */
+.user-profile {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(20, 24, 48,-updates 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.user-profile:hover {
+  transform: scale(1.1);
+}
+
+.user-icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* Dropdown Styles */
+.profile-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: rgba(20, 24, 48, 0.9);
+  border-radius: 6px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  z-index: 1200;
+}
+
+.user-profile:hover .profile-dropdown {
+  display: block;
+}
+
+.logout-btn {
+  background: none;
+  border: none;
+  color: #ff7e87;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.logout-btn:hover {
+  color: #ff999f;
 }
 
 /* Hamburger Menu */
@@ -161,6 +217,23 @@ header {
 
   .header-title {
     font-size: 24px;
+  }
+
+  .user-profile {
+    width: 35px;
+    height: 35px;
+  }
+
+  .user-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .profile-dropdown {
+    position: static; /* Adjust for mobile menu */
+    box-shadow: none;
+    background: transparent;
+    padding: 0;
   }
 }
 
